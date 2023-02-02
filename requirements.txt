@@ -1,0 +1,7 @@
+Adafruit-DHT==1.4.0
+bottle==0.12.23
+BottleDaemon==0.1.2
+docutils==0.19
+lockfile==0.12.2
+python-daemon==2.3.2
+python-decouple==3.7
