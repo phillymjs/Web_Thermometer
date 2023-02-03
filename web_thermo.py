@@ -11,13 +11,14 @@ datafilelocation = "{}/{}".format(str(Path(__file__).parent),"data.txt")
 
 # Read data from the file
 def read_data_file():
-    datafile = open(datafilelocation, 'r')
-    data = datafile.readlines()
-    temperature = data[0].rstrip()
-    humidity = data[1].rstrip()
-    timestamp = data[2].split()
-    date, time = timestamp
-    return temperature, humidity, date, time
+    with open(datafilelocation, mode="r") as datafile:
+        data = datafile.readlines()
+        temperature = data[0].rstrip()
+        humidity = data[1].rstrip()
+        timestamp = data[2].split()
+        date, time = timestamp
+        return temperature, humidity, date, time
+    datafile.close()
 
 @route('/static/<filename:path>')
 def send_static(filename):
@@ -36,4 +37,4 @@ def index():
     return template('template.tpl', data)
 
 if __name__ == '__main__':
-    daemon_run(host='0.0.0.0', port=8080)
+    daemon_run(host='0.0.0.0', port=config('WEBSERVER_PORT'))

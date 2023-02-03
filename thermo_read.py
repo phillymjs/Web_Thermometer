@@ -7,11 +7,11 @@ datafilelocation = "{}/{}".format(str(Path(__file__).parent),"data.txt")
 
 # Write data to file
 def write_data_file(temperature,humidity):
-    datafile = open(datafilelocation, 'w')
-    now = datetime.now()
-    timestamp = now.strftime("%m/%d/%Y %H:%M:%S")
-    datafile.writelines([str(temperature), '\n', str(humidity), '\n', timestamp])
-    datafile.close
+    with open(datafilelocation, mode="w") as datafile:
+        now = datetime.now()
+        timestamp = now.strftime("%m/%d/%Y %H:%M:%S")
+        datafile.writelines([str(temperature), '\n', str(humidity), '\n', timestamp])
+    datafile.close()
 
 def read_temp_sensor():
     sensor = 11
